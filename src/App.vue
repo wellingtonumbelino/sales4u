@@ -1,3 +1,6 @@
 <template>
-  <h1>Hello World</h1>
+  <Product />
 </template>
+<script setup>
+import Product from "./views/Product.vue";
+</script>

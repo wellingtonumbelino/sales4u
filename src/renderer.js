@@ -29,5 +29,20 @@
 import "./index.css";
 import { createApp } from "vue";
 import App from "./App.vue";
+import PrimeVue from "primevue/config";
+import Aura from "@primevue/themes/aura";
+import "primeicons/primeicons.css";
 
-createApp(App).mount("#app");
+import { setPrimeVueComponents } from "./modules/primevue-components";
+
+const app = createApp(App);
+
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura,
+  },
+});
+
+setPrimeVueComponents(app);
+
+app.mount("#app");
