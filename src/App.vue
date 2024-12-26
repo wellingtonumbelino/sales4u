@@ -1,6 +1,15 @@
 <template>
-  <Product />
+  <h1>Bem-Vindo ao Sales4U!</h1>
+
+  <nav>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/product">Produtos</RouterLink>
+  </nav>
+  <main>
+    <RouterView />
+  </main>
 </template>
+
 <script setup>
-import Product from "./views/Product.vue";
+import { RouterLink, RouterView } from "vue-router";
 </script>

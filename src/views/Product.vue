@@ -28,19 +28,31 @@
   </div>
 </template>
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 
 export default defineComponent({
   name: "Product",
   setup() {
+    let products = [];
+
     const newProductModel = {
       name: "",
       price: 0.0,
       stock: 0,
     };
 
+    onMounted(() => {
+      requestGetProducts();
+    });
+
     const onProductSubmit = () => {
-      console.log(newProductModel);
+      console.log("chamou");
+      window.api.registerProduct(newProductModel);
+    };
+
+    const requestGetProducts = async () => {
+      products = await window.api.getProducts();
+      console.log(products);
     };
 
     return {
