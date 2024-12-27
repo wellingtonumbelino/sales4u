@@ -1,4 +1,7 @@
+@import "./mixins/mixins.scss";
+
 @import "./components/index.scss";
+@import "./_lib/index.scss";
 @import "./views/index.scss";
 
 #app {
