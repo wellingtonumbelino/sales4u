@@ -7,6 +7,7 @@ import "./index.css";
 
 import router from "./router/router";
 
+import { setComponents } from "./modules/components";
 import { setPrimeVueComponents } from "./modules/primevue-components";
 
 const app = createApp(App);
@@ -18,6 +19,7 @@ app.use(PrimeVue, {
 });
 app.use(router);
 
+setComponents(app);
 setPrimeVueComponents(app);
 
 app.mount("#app");
