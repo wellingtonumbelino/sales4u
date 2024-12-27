@@ -1,0 +1,11 @@
+#app {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+
+  .app-content {
+    h1 {
+      margin-top: 0;
+    }
+  }
+}
