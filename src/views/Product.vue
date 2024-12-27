@@ -18,6 +18,12 @@
         :header="col.header"
         :key="index"
       >
+        <template #body="{ data }">
+          <span v-if="col.field === 'created_at'">
+            {{ $datePlugin.formatDateDefault(data[col.field]) }}
+          </span>
+          <span v-else>{{ data[col.field] }}</span>
+        </template>
       </Column>
     </DataTable>
 

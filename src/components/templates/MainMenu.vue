@@ -26,6 +26,13 @@ export default defineComponent({
           router.push("/product");
         },
       },
+      {
+        separator: true,
+      },
+      {
+        label: "Sair",
+        icon: "pi pi-power-off",
+      },
     ]);
 
     return {

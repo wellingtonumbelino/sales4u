@@ -9,6 +9,7 @@ import "./assets/scss/layout.scss";
 import router from "./router/router";
 
 import { setComponents } from "./modules/components";
+import { setPlugins } from "./modules/plugins";
 import { setPrimeVueComponents } from "./modules/primevue-components";
 
 const app = createApp(App);
@@ -21,6 +22,7 @@ app.use(PrimeVue, {
 app.use(router);
 
 setComponents(app);
+setPlugins(app);
 setPrimeVueComponents(app);
 
 app.mount("#app");
