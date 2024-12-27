@@ -1,5 +1,5 @@
-import HeaderTitle from "../components/templates/HeaderTitle.vue";
-import MainMenu from "../components/templates/MainMenu.vue";
+import HeaderTitle from "@template/HeaderTitle.vue";
+import MainMenu from "@layout/MainMenu.vue";
 
 export function setComponents(app) {
   app.component("HeaderTitle", HeaderTitle);

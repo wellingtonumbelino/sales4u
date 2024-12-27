@@ -55,7 +55,7 @@
 </template>
 <script>
 import { defineComponent, onMounted, ref } from "vue";
-import columns from "../data/ProductTableColumns";
+import columns from "@data/ProductTableColumns";
 
 export default defineComponent({
   name: "Product",

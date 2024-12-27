@@ -1,5 +1,5 @@
 import { createMemoryHistory, createRouter } from "vue-router";
-import { lazyLoad } from "../utils/lazyload";
+import { lazyLoad } from "@utils/lazyload";
 
 const routes = [
   { path: "/", component: lazyLoad("Home") },
