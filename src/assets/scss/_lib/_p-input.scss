@@ -1,0 +1,9 @@
+.p-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    @include label-layout;
+  }
+}
