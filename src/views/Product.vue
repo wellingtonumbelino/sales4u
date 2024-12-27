@@ -2,12 +2,18 @@
   <div class="product">
     <HeaderTitle title="Produtos" />
 
+    <ModalNewProduct ref="modalNewProduct" />
+
     <DataTable removableSort :loading="loading" :value="products">
       <template #header>
         <div class="data-table-header">
           <div class="header-left"></div>
           <div class="header-right">
-            <Button icon="pi pi-plus" label="Novo Produto" />
+            <Button
+              icon="pi pi-plus"
+              label="Novo Produto"
+              @click="$refs.modalNewProduct.open()"
+            />
           </div>
         </div>
       </template>
@@ -26,39 +32,17 @@
         </template>
       </Column>
     </DataTable>
-
-    <!-- <div class="form-new-product">
-      <div>
-        <label for="">Product Name</label>
-        <InputText
-          placeholder="Insert a product name"
-          v-model="newProductModel.name"
-        />
-      </div>
-      <div>
-        <label for="">Price</label>
-        <InputNumber
-          currency="BRL"
-          locale="pt-BR"
-          mode="currency"
-          v-model="newProductModel.price"
-          :min="0"
-        />
-      </div>
-      <div>
-        <label for="">Stock</label>
-        <InputNumber v-model="newProductModel.stock" :min="0" />
-      </div>
-      <Button label="Create" @click="onProductSubmit" />
-    </div> -->
   </div>
 </template>
 <script>
 import { defineComponent, onMounted, ref } from "vue";
 import columns from "@data/ProductTableColumns";
 
+import ModalNewProduct from "@components/product/ModalNewProduct.vue";
+
 export default defineComponent({
   name: "Product",
+  components: { ModalNewProduct },
   setup() {
     let loading = ref(false);
     let products = ref([]);
