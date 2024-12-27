@@ -1,7 +1,27 @@
 <template>
   <div class="product">
-    <h2>Register New Product</h2>
-    <div class="form-new-product">
+    <HeaderTitle title="Produtos" />
+
+    <DataTable removableSort :loading="loading" :value="products">
+      <template #header>
+        <div class="data-table-header">
+          <div class="header-left"></div>
+          <div class="header-right">
+            <Button icon="pi pi-plus" label="Novo Produto" />
+          </div>
+        </div>
+      </template>
+      <Column
+        v-for="(col, index) in columns"
+        :sortable="col.field !== 'created_at'"
+        :field="col.field"
+        :header="col.header"
+        :key="index"
+      >
+      </Column>
+    </DataTable>
+
+    <!-- <div class="form-new-product">
       <div>
         <label for="">Product Name</label>
         <InputText
@@ -24,16 +44,18 @@
         <InputNumber v-model="newProductModel.stock" :min="0" />
       </div>
       <Button label="Create" @click="onProductSubmit" />
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
+import columns from "../data/ProductTableColumns";
 
 export default defineComponent({
   name: "Product",
   setup() {
-    let products = [];
+    let loading = ref(false);
+    let products = ref([]);
 
     const newProductModel = {
       name: "",
@@ -51,13 +73,22 @@ export default defineComponent({
     };
 
     const requestGetProducts = async () => {
-      products = await window.api.getProducts();
-      console.log(products);
+      try {
+        loading = true;
+        products.value = await window.api.getProducts();
+      } catch {
+        products.value = [];
+      } finally {
+        loading = false;
+      }
     };
 
     return {
+      columns,
+      loading,
       newProductModel,
       onProductSubmit,
+      products,
     };
   },
 });
