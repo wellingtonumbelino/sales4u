@@ -3,6 +3,7 @@ import Column from "primevue/column";
 import DataTable from "primevue/datatable";
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
+import Menu from "primevue/menu";
 
 export function setPrimeVueComponents(app) {
   app.component("Button", Button);
@@ -10,4 +11,5 @@ export function setPrimeVueComponents(app) {
   app.component("DataTable", DataTable);
   app.component("InputNumber", InputNumber);
   app.component("InputText", InputText);
+  app.component("Menu", Menu);
 }
