@@ -14,6 +14,22 @@ ipcMain.handle("inactive-product", (event, id) => {
   return { success: true };
 });
 
-ipcMain.on("register-product", (event, product) => {
-  console.log(product);
+ipcMain.handle("register-product", (event, product) => {
+  const { name, price, quantity } = product;
+  const stmt = db.prepare(
+    "INSERT INTO products (name, price, quantity, active) VALUES (?, ?, ?, 1)"
+  );
+
+  try {
+    const result = stmt.run(name, price, quantity);
+    return { id: result.lastInsertRowid, name };
+  } catch (error) {
+    console.error("Error inserting product: ", error);
+
+    throw {
+      message: "Falha ao registrar o produto.",
+      code: "REGISTER_PRODUCT_ERROR",
+      details: error.message,
+    };
+  }
 });

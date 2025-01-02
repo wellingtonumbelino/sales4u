@@ -67,12 +67,12 @@
 
 <script>
 import { zodResolver } from "@primevue/forms/resolvers/zod";
-import { defineComponent, ref } from "vue";
+import { defineComponent, getCurrentInstance, ref } from "vue";
 import { z } from "zod";
 
 export default defineComponent({
   name: "ModalNewProduct",
-  setup() {
+  setup(props, { emit }) {
     let display = ref(false);
     const initialValue = ref({
       name: "",
@@ -94,6 +94,8 @@ export default defineComponent({
         })
       )
     );
+    const $notification =
+      getCurrentInstance().appContext.config.globalProperties.$notification;
 
     const open = () => {
       display.value = true;
@@ -103,10 +105,21 @@ export default defineComponent({
       display.value = false;
     };
 
-    const onFormSubmit = ({ valid, values }) => {
+    const onFormSubmit = async ({ valid, values }) => {
       if (!valid) return;
 
-      console.log(values);
+      try {
+        const { name } = await window.api.registerProduct(values);
+        $notification.success(`Produto ${name} cadastrado.`);
+        hide();
+        emit("update-products");
+      } catch (error) {
+        if (error.code === "REGISTER_PRODUCT_ERROR") {
+          $notification.error(error.message, "Erro ao registrar o produto");
+        } else {
+          $notification.error($notification.errorMessage());
+        }
+      }
     };
 
     return {

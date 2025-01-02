@@ -2,9 +2,12 @@
   <div class="product">
     <HeaderTitle title="Produtos" />
 
-    <ModalNewProduct ref="modalNewProduct" />
+    <ModalNewProduct
+      ref="modalNewProduct"
+      @update-products="updateProducts()"
+    />
 
-    <DataTable removableSort :loading="loading" :value="products">
+    <DataTable removableSort scrollable :loading="loading" :value="products">
       <template #header>
         <div class="data-table-header">
           <div class="header-left"></div>
@@ -57,9 +60,8 @@ export default defineComponent({
       requestGetProducts();
     });
 
-    const onProductSubmit = () => {
-      console.log("chamou");
-      window.api.registerProduct(newProductModel);
+    const updateProducts = () => {
+      requestGetProducts();
     };
 
     const requestGetProducts = async () => {
@@ -77,8 +79,8 @@ export default defineComponent({
       columns,
       loading,
       newProductModel,
-      onProductSubmit,
       products,
+      updateProducts,
     };
   },
 });
