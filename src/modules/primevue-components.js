@@ -7,6 +7,7 @@ import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
 import Menu from "primevue/menu";
 import Message from "primevue/message";
+import Toast from "primevue/toast";
 
 export function setPrimeVueComponents(app) {
   app.component("Button", Button);
@@ -18,4 +19,5 @@ export function setPrimeVueComponents(app) {
   app.component("InputText", InputText);
   app.component("Menu", Menu);
   app.component("Message", Message);
+  app.component("Toast", Toast);
 }

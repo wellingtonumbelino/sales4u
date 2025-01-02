@@ -7,6 +7,7 @@ import "./index.css";
 import "./assets/scss/layout.scss";
 
 import router from "./router/router";
+import ToastService from "primevue/toastservice";
 
 import { setComponents } from "./modules/components";
 import { setPlugins } from "./modules/plugins";
@@ -20,6 +21,7 @@ app.use(PrimeVue, {
   },
 });
 app.use(router);
+app.use(ToastService);
 
 setComponents(app);
 setPlugins(app);

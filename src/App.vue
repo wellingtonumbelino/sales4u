@@ -1,4 +1,5 @@
 <template>
+  <Toast />
   <MainMenu />
 
   <aside class="app-content">
